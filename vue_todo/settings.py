@@ -25,9 +25,11 @@ SECRET_KEY = 'django-insecure-n4c7+s!7pndf$o&p8!rh5#b^^+=!r1_u(_^i6wx^_cj2kinq_-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+CSRF_TRUSED_ORIGINS = ["http://localhost:5173"]
 
+ALLOWED_HOSTS = ['localhost']
 
+CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,17 +42,24 @@ INSTALLED_APPS = [
 
     #local apps
     'tasks.apps.TasksConfig',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:3001",
 ]
 
 ROOT_URLCONF = 'vue_todo.urls'
